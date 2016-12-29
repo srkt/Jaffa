@@ -1,0 +1,33 @@
+{
+  "name": "jaffa",
+  "version": "1.0.0",
+  "description": "Jaffa inspired by Angular,React and RxJs",
+  "main": "Jaffa.js",
+  "scripts": {
+    "test": "karma start karma.conf.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ravisgit/Jaffa.git"
+  },
+  "keywords": [
+    "Jaffa",
+    "ui-framework"
+  ],
+  "author": "Ravi Kanth",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ravisgit/Jaffa/issues"
+  },
+  "homepage": "https://github.com/ravisgit/Jaffa#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-watch": "^4.3.10",
+    "jasmine-core": "^2.5.2",
+    "karma": "^1.3.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-commonjs": "^1.0.0",
+    "karma-jasmine": "^1.0.2",
+    "karma-phantomjs-launcher": "^1.0.2"
+  }
+}
