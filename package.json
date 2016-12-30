@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ravisgit/Jaffa.git"
+    "url": "git+https://github.com/srkt/Jaffa.git"
   },
   "keywords": [
     "Jaffa",
@@ -17,17 +17,15 @@
   "author": "Ravi Kanth",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ravisgit/Jaffa/issues"
+    "url": "https://github.com/srkt/Jaffa/issues"
   },
-  "homepage": "https://github.com/ravisgit/Jaffa#readme",
+  "homepage": "https://github.com/srkt/Jaffa#readme",
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-watch": "^4.3.10",
     "jasmine-core": "^2.5.2",
     "karma": "^1.3.0",
-    "karma-chrome-launcher": "^2.0.0",
-    "karma-commonjs": "^1.0.0",
-    "karma-jasmine": "^1.0.2",
+    "karma-jasmine": "^1.1.0",
     "karma-phantomjs-launcher": "^1.0.2"
   }
 }

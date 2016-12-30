@@ -1,15 +1,13 @@
 
-export module Jaffa {
-
-interface IObservableActions{
+interface IWatcherActions{
     id:number;
     onNext:Function;
     onError:Function;
     onComplete:Function;
 }
 
-interface ObservableFunc {
-    (observableActions:IObservableActions):void;
+interface WatcherFunc {
+    (WatcherActions:IWatcherActions):void;
 }
 
 interface IDisposable {
@@ -17,13 +15,13 @@ interface IDisposable {
 }
 
 /* 
-Observable takes an ObservableFunc and registers it. 
-Observers can subscribe to this ObservableFunc and receive updates of events 
+Watcher takes an WatcherFunc and registers it. 
+Observers can subscribe to this WatcherFunc and receive updates of events 
 */
-export class Observable{
+export class Watcher{
 
-private _observableActions:IObservableActions;
-private _subscribers:Array<IObservableActions>;
+private _WatcherActions:IWatcherActions;
+private _subscribers:Array<IWatcherActions> = new Array<IWatcherActions>();
 private actionNames:{     onNext:string,
     onError:string,
     onComplete:string } = {
@@ -34,14 +32,14 @@ private actionNames:{     onNext:string,
 
 private getUid :{ next:() => number};
 
-
-constructor(private observe:ObservableFunc){
+constructor(private observe:WatcherFunc){
             var uid:number = 0;
 
-          this.observe(this._observableActions);
+
+          this.observe(this._WatcherActions);
 
           for(var actionName in this.actionNames){
-              this._observableActions[actionName] = this[actionName]; 
+              this._WatcherActions[actionName] = this[actionName]; 
           }
 
           this.getUid =  {
@@ -56,7 +54,7 @@ constructor(private observe:ObservableFunc){
 
 subscribe(onNext:Function,onError:Function,onComplete:Function):IDisposable{
 
-var subscribeObject : IObservableActions = {
+var subscribeObject : IWatcherActions = {
                                             onNext: onNext,
                                             onError:onError,
                                             onComplete:onComplete,
@@ -85,9 +83,10 @@ if(idx){
 
 invoke(args:any,funcName:string):void{
 
-this._subscribers.forEach((subscriber:IObservableActions)=>{
+this._subscribers.forEach((subscriber:IWatcherActions)=>{
         subscriber[funcName](args);
 });
+
 
 }
 
@@ -105,18 +104,6 @@ onCompleted(args:any):void{
 this.invoke(args,this.actionNames.onComplete);
 }
 
-
-
-
-}
-
-
-export class Element {
-
-    constructor() {
-
-    }
-}
 
 }
 
