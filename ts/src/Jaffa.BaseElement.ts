@@ -1,8 +1,7 @@
 import { Watcher } from "./Jaffa.Watcher";
 
-export module Jaffa {
 
-export class Element {
+export class BaseElement {
 
     
     private _events:Array<Event> = null;
@@ -13,5 +12,4 @@ export class Element {
     }
 
 
-}
 }

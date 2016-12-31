@@ -1,22 +1,49 @@
 
-export module Jaffa {
+import { Watcher } from "./Jaffa.Watcher";
+import { BaseElement } from "./Jaffa.BaseElement";
 
-export class ElementFactory {
 
+
+export class Utils {
+
+   static EmptyFunction : Function = function(proto?:Object) { 
+
+     var f = function() {};
+     proto && (f.prototype = proto);
+     return new f();
+   };
+
+   static extend(source:any,obj:any):void {
+
+     if(!source || !obj){
+         throw new Error('Source and Object is undefined');
+     }
+
+     for(let elem in obj){
+        source[elem] = obj[elem];
+     }
+   
+   }
+
+
+}
+
+class Element {
+
+
+    
     /*
         Element Content
         https://developer.mozilla.org/en-US/docs/Web/HTML/Element
 
-     */
-
-
-    static HTML_ELEMENTS:Object = {
+     */  
+    static HTML_ELEMENTS = {
                                     "MAIN_ROOT":["html"],
                                     "DOCUMENT_METADATA":["base","head","link","meta","script","style","title"],
                                     "CONTENT_SECTION":["address","article","body","h1","h6","aside","footer","header","h2","h3","h4","h5","hgroup","nav","section"],
                                     "TEXT_CONTENT":["dd","dl","div","article","nav","dt","figcaption","figure","hr","li","ol","ul","menu","main","body","list-style-type","p","pre"],
                                     "INLINE_TEXT":["a","abbr","title","b","bdi","bdo","br","cite","code","data","time","dfn","em","i","kbd","mark","q","blockquote","rp","ruby","rt","rtc","rb","s","del","ins","samp","small","span","class","id","lang","strong","sub","sup","u","var","wbr"],
-                                    "IMAGE_MULTIMEDIA":["area","map","audio","src","source","img","track","video",".vtt"],
+                                    "IMAGE_MULTIMEDIA":["area","map","audio","src","source","img","track","video","vtt"],
                                     "EMBEDDED_CONTENT":["embed","object","param","source","picture","audio","video"],
                                     "SCRIPTING":["canvas","noscript","script"],
                                     "DEMARCATING_EDITS":["del","ins"],
@@ -31,15 +58,31 @@ export class ElementFactory {
 
      static ATTRIBUTES =  ["accept","accept-charset","accesskey","action","align","alt","async","autocomplete","autofocus","autoplay","autosave","bgcolor","border","buffered","challenge","charset","checked","cite","class","code","codebase","color","cols","colspan","content","contenteditable","contextmenu","controls","coords","data","data-*","datetime","default","defer","dir","dirname","disabled","download","draggable","dropzone","enctype","for","form","formaction","headers","height","hidden","high","href","hreflang","http-equiv","icon","id","integrity","ismap","itemprop","keytype","kind","label","lang","language","list","loop","low","manifest","max","maxlength","media","method","min","multiple","muted","name","novalidate","open","optimum","pattern","ping","placeholder","poster","preload","radiogroup","readonly","rel","required","reversed","rows","rowspan","sandbox","scope","scoped","seamless","selected","shape","size","sizes","span","spellcheck","src","srcdoc","srclang","srcset","start","step","style","summary","tabindex","target","title","type","usemap","value","width","wrap"];
 
-    constructor() {
-
-    }
-
-    static Create():void{
+constructor(){
 
 
-    }
 
+   var elementCache = {};
+
+ 
+       for(var elem in Element.ELEM_ATTRIBUTES){
+
+           var elemUpper = elem.toUpperCase();
+
+           if(!elementCache[elemUpper]){
+              elementCache[elemUpper] =   Utils.EmptyFunction(BaseElement.prototype);
+           }
+
+             Utils.extend(Element,elementCache);
+
+            
+       }
 
 }
 }
+
+ export function Jaffa(){
+    
+     return new Element();
+     
+ };

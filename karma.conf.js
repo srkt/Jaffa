@@ -12,7 +12,8 @@ module.exports = function(config) {
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
     frameworks: ['jasmine'], //,'commonjs'
 
-    files: [ 'js/*.js','tests/*.js'],
+    files: [ 'build/js/*.js',
+             'build/tests/*.js'],
 
     // list of files to exclude
     exclude: [
@@ -22,8 +23,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      //  'js/app/*.js': ['commonjs']
-    //   'js/**/*.js': [ 'browserify' ]
+     // '**/*.ts': ['typescript']
     },
 
 
